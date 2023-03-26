@@ -1,0 +1,88 @@
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(203, 231, 255);
+}
+
+.TituloSite h1{
+    text-align: center;  
+    background-color: #448CE3;  
+    margin-top: 2%;    
+    margin-left: 20%;       
+    border: 2px solid #000000 ;
+    width: 60%;
+    font-size: 40px;
+}
+.GotaAgua img{
+    width: 55%;
+    margin-top: 1%;
+    margin-left: 22.5%;
+    padding: 2%;
+}
+.paragrafo1 {
+    color: rgb(0, 0, 0);
+    background-color: #448CE3;
+    text-align: center;    
+    margin-top: 2%;    
+    margin-left: 19%;       
+    border-bottom: 2px solid #000000 ;
+    width: 60%;
+    font-size: 35px;
+}
+.texto1 {
+    font-size: 22px;
+    color: rgb(1, 125, 157);
+    padding: 1.5%;
+    margin: 1.5%;
+    text-indent: 2%;
+}
+.paragrafo2{
+    color: rgb(0, 0, 0);
+    background-color: #448CE3;
+    text-align: center;    
+    margin-top: 2%;    
+    margin-left: 19%;       
+    border-bottom: 2px solid #000000 ;
+    width: 60%;
+    font-size: 35px;
+}
+.texto2{
+    font-size: 22px;
+    color: rgb(1, 125, 157);
+    padding: 1.5%;
+    margin: 1.5%;
+    text-indent: 2%;
+}
+.saneamento img{
+    width: 50%;
+    margin-top: 1%;
+    margin-left: 25%;
+    padding: 2%;
+
+} 
+.rodape{
+    padding: 1%;
+    margin-left: 2%;
+    width: 95%;
+    height: 200px;
+    background-color: #3333;
+    border-radius: 10px;
+}
+.rodape a{
+    text-decoration: none;
+}
+.rodape h2{
+    text-align: center;
+    padding: 1%;
+
+}
+.rodape p{
+    font-size: 20px;
+    margin-top: 1%;
+    padding: 1%;
+}
