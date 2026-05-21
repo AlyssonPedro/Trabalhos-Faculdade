@@ -1,0 +1,143 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOGU4AVkeCNL4nCNdXt/G8T",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/AlyssonPedro/Trabalhos-Faculdade/blob/main/Atv%20aula%2011%20Ciencia%20de%20dados\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install anonymizedf"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "SawM9tpg0X5a",
+        "outputId": "ce231c97-3d8f-4bd1-eb93-e8f3d892bf02"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Collecting anonymizedf\n",
+            "  Downloading anonymizedf-1.0.1-py3-none-any.whl.metadata (5.7 kB)\n",
+            "Requirement already satisfied: pandas in /usr/local/lib/python3.12/dist-packages (from anonymizedf) (2.2.2)\n",
+            "Collecting faker (from anonymizedf)\n",
+            "  Downloading faker-40.18.0-py3-none-any.whl.metadata (16 kB)\n",
+            "Requirement already satisfied: numpy>=1.26.0 in /usr/local/lib/python3.12/dist-packages (from pandas->anonymizedf) (2.0.2)\n",
+            "Requirement already satisfied: python-dateutil>=2.8.2 in /usr/local/lib/python3.12/dist-packages (from pandas->anonymizedf) (2.9.0.post0)\n",
+            "Requirement already satisfied: pytz>=2020.1 in /usr/local/lib/python3.12/dist-packages (from pandas->anonymizedf) (2025.2)\n",
+            "Requirement already satisfied: tzdata>=2022.7 in /usr/local/lib/python3.12/dist-packages (from pandas->anonymizedf) (2026.1)\n",
+            "Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.12/dist-packages (from python-dateutil>=2.8.2->pandas->anonymizedf) (1.17.0)\n",
+            "Downloading anonymizedf-1.0.1-py3-none-any.whl (7.0 kB)\n",
+            "Downloading faker-40.18.0-py3-none-any.whl (2.0 MB)\n",
+            "\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m2.0/2.0 MB\u001b[0m \u001b[31m55.4 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25hInstalling collected packages: faker, anonymizedf\n",
+            "Successfully installed anonymizedf-1.0.1 faker-40.18.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "collapsed": true,
+        "id": "PD59mkNu0DX9",
+        "outputId": "24ee82d2-904e-4a33-e65e-1f30067b41ec"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "--- DATASET ORIGINAL ---\n",
+            "     Nome  Idade Cidade Escolaridade  Filhos Genero  Salario       Doenca\n",
+            "0     Ana     25    Rio        Médio       0      F     2000      Nenhuma\n",
+            "1   Bruno     34     SP     Superior       1      M     4500         Asma\n",
+            "2  Carlos     45    Rio          Pós       2      M     8000     Diabetes\n",
+            "3   Diana     29     BH        Médio       0      F     2500      Nenhuma\n",
+            "4     Edu     52     SP     Superior       3      M     9500  Hipertensão\n",
+            "\n",
+            "\n",
+            "--- DATASET ANONIMIZADO ---\n",
+            "            Fake_Nome  Fake_Idade Fake_Cidade Escolaridade  Filhos Genero  \\\n",
+            "0        Gail Johnson          43    Cidade 1        Médio       0      F   \n",
+            "1       Brenda Wilson          34    Cidade 2     Superior       1      M   \n",
+            "2       Samantha Rees          52    Cidade 1          Pós       2      M   \n",
+            "3    Ms Lucy Williams          25    Cidade 3        Médio       0      F   \n",
+            "4  Alexander Thompson          45    Cidade 2     Superior       3      M   \n",
+            "\n",
+            "   Salario       Doenca  \n",
+            "0     2000      Nenhuma  \n",
+            "1     4500         Asma  \n",
+            "2     8000     Diabetes  \n",
+            "3     2500      Nenhuma  \n",
+            "4     9500  Hipertensão  \n"
+          ]
+        }
+      ],
+      "source": [
+        "import pandas as pd\n",
+        "from anonymizedf.anonymizedf import anonymize\n",
+        "\n",
+        "dados = {\n",
+        "    'Nome': ['Ana', 'Bruno', 'Carlos', 'Diana', 'Edu'],\n",
+        "    'Idade': [25, 34, 45, 29, 52],\n",
+        "    'Cidade': ['Rio', 'SP', 'Rio', 'BH', 'SP'],\n",
+        "    'Escolaridade': ['Médio', 'Superior', 'Pós', 'Médio', 'Superior'],\n",
+        "    'Filhos': [0, 1, 2, 0, 3],\n",
+        "    'Genero': ['F', 'M', 'M', 'F', 'M'],\n",
+        "    'Salario': [2000, 4500, 8000, 2500, 9500],\n",
+        "    'Doenca': ['Nenhuma', 'Asma', 'Diabetes', 'Nenhuma', 'Hipertensão']\n",
+        "}\n",
+        "\n",
+        "df = pd.DataFrame(dados)\n",
+        "print(\"--- DATASET ORIGINAL ---\")\n",
+        "print(df)\n",
+        "print(\"\\n\")\n",
+        "\n",
+        "an = anonymize(df)\n",
+        "an.fake_names(\"Nome\")\n",
+        "an.fake_whole_numbers(\"Idade\")\n",
+        "an.fake_categories(\"Cidade\")\n",
+        "df_anonimizado = df[[\n",
+        "    'Fake_Nome', 'Fake_Idade', 'Fake_Cidade',\n",
+        "    'Escolaridade', 'Filhos', 'Genero',\n",
+        "    'Salario', 'Doenca'\n",
+        "]]\n",
+        "\n",
+        "print(\"--- DATASET ANONIMIZADO ---\")\n",
+        "print(df_anonimizado)"
+      ]
+    }
+  ]
+}
